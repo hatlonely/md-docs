@@ -77,6 +77,8 @@ export GOPRIVATE_GIT_URL=https://<user>:<password/private-token>@gitlab.hatlonel
 export GOPRIVATE_GIT_URL_INSTEAD_OF=https://gitlab.hatlonely.com
 ```
 
+这样授权信息通过宿主机的环境变量，传给 Makefile，Makefile 传给 docker build，最终在 dockerfile 中通过 ARG 命令获取到授权信息
+
 ## 完整代码
 
 ### Dockerfile
