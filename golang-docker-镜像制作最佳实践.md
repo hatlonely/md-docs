@@ -72,7 +72,7 @@ image:
 
 在宿主机的环境变量中设置
 
-```
+```shell
 export GOPRIVATE_GIT_URL=https://<user>:<password/private-token>@gitlab.hatlonely.com
 export GOPRIVATE_GIT_URL_INSTEAD_OF=https://gitlab.hatlonely.com
 ```
