@@ -103,7 +103,7 @@ gituser=hatlonely
 repository=myapp
 version=1.0.1
 export GOPROXY=https://goproxy.cn
-export GOPRIVATE=gitlab.xxx.com
+export GOPRIVATE=gitlab.hatlonely.com
 
 .PHONY: build
 build: cmd/main.go internal/*/*.go Makefile vendor
