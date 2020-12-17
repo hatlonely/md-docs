@@ -72,7 +72,7 @@ image:
 
 在宿主机的环境变量中设置
 
-```shell
+```sh
 export GOPRIVATE_GIT_URL=https://<user>:<password/private-token>@gitlab.hatlonely.com
 export GOPRIVATE_GIT_URL_INSTEAD_OF=https://gitlab.hatlonely.com
 ```
@@ -130,7 +130,7 @@ codegen: api/myapp.proto
 
 .PHONY: image
 image:
-	docker build --build-arg git_url=${GITURL} --build-arg git_url_instand_of=${GIT_URL_INSTEAD_OF} --tag=${dockeruser}/${repository}:${version} .
+	docker build --build-arg git_url=${GOPRIVATE_GIT_URL} --build-arg git_url_instand_of=${GOPRIVATE_GIT_URL_INSTEAD_OF} --tag=${dockeruser}/${repository}:${version} .
 ```
 
 ## 链接
