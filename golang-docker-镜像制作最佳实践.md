@@ -77,7 +77,15 @@ export GOPRIVATE_GIT_URL=https://<user>:<password/private-token>@gitlab.hatlonel
 export GOPRIVATE_GIT_URL_INSTEAD_OF=https://gitlab.hatlonely.com
 ```
 
-这样授权信息通过宿主机的环境变量，传给 Makefile，Makefile 传给 docker build，最终在 dockerfile 中通过 ARG 命令获取到授权信息
+这样授权信息通过宿主机的环境变量，传给 Makefile，Makefile 传给 docker build，最终在 Dockerfile 中通过 ARG 命令获取到授权信息
+
+## 镜像 tag
+
+通过 `git describe --tags` 命令可以获取代码的 tag 信息，go 代码的 tag 和 docker 镜像的 tag 命名习惯上略有差别，用 awk 稍微处理下，在 Makefile 中增加如下代码
+
+```Makefile
+version=$(shell git describe --tags | awk '{print(substr($$0,2,length($$0)))}')
+```
 
 ## 完整代码
 
@@ -110,7 +118,7 @@ binary=myapp
 dockeruser=hatlonely
 gituser=hatlonely
 repository=myapp
-version=1.0.1
+version=$(shell git describe --tags | awk '{print(substr($$0,2,length($$0)))}')
 export GOPROXY=https://goproxy.cn
 export GOPRIVATE=gitlab.hatlonely.com
 
