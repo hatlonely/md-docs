@@ -127,7 +127,8 @@ SetDefaultValue(&options)
 
 这里直接使用一个 `map` 作为缓存，同时加一个 `mutex` 保证协程安全
 
-另外值得注意的是，这种拷贝是浅拷贝，如果结构体中包含指针，拷贝的只是指针，如果这个结构体是可变的，可能会出现不可预期的结果
+另外值得注意的是，这种拷贝是浅拷贝，如果结构体中包含指针，拷贝的只是指针，如果这个结构体是可变的，可能会出现不可预期的结果。
+结构体中包含指针的场景，还是使用 `SetDefaultValue` 会更安全一些
 
 ```golang
 var mutex sync.RWMutex
@@ -164,3 +165,7 @@ func SetDefaultValueCopy(v interface{}) error {
 	return nil
 }
 ```
+
+## 参考链接
+
+- 源码地址: <https://github.com/hatlonely/go-kit/blob/master/refx/default.go>
