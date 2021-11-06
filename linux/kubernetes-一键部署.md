@@ -27,3 +27,11 @@
     ```
     kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
     ```
+
+6. 修改 calico 镜像地址
+
+    ```
+    kubectl edit kubectl edit deployments calico-kube-controllers -n kube-system
+
+    # 修改 docker.io 镜像地址到 docker.mirrors.ustc.edu.cn
+    ```
