@@ -1,0 +1,20 @@
+name: md-docs
+
+dep:
+  ops:
+    type: git
+    url: "https://github.com/hatlonely/ops.git"
+    version: master
+
+env:
+  default:
+    NAME: "rpc-account"
+  dev:
+    K8S_CONTEXT: "home-k8s"
+    NAMESPACE: "dev"
+    RPC_ACCOUNT_SERVICE: "k8s.account.hatlonely.com"
+
+task:
+  add-user:
+
+
