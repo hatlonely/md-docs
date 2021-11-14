@@ -13,8 +13,25 @@ env:
     K8S_CONTEXT: "home-k8s"
     NAMESPACE: "dev"
     RPC_ACCOUNT_SERVICE: "k8s.account.hatlonely.com"
+    ACCOUNT_EMAIL: "{{ .account.email }}"
+    ACCOUNT_PHONE: "{{ .account.phone }}"
+    ACCOUNT_NAME: "{{ .account.name }}"
+    ACCOUNT_PASSWORD: "{{ .account.password }}"
+    ACCOUNT_BIRTHDAY: "{{ .account.birthday }}"
+    ACCOUNT_GENDER: "{{ .account.gender }}"
+    ACCOUNT_AVATAR: "{{ .account.avatar }}"
 
 task:
   add-user:
-
+    step:
+      - |
+        curl -XPOST "http://${RPC_ACCOUNT_SERVICE}/v1/account" -d "{
+          \"email\":\"${ACCOUNT_EMAIL}\",
+          \"phone\":\"${ACCOUNT_PHONE}\",
+          \"name\":\"${ACCOUNT_NAME}\",
+          \"password\":\"${ACCOUNT_PASSWORD}\",
+          \"birthday\":\"${ACCOUNT_BIRTHDAY}\",
+          \"gender\": ${ACCOUNT_GENDER},
+          \"avatar\":\"${ACCOUNT_AVATAR}\"
+        }"
 
