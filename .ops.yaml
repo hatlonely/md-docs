@@ -13,6 +13,7 @@ env:
     K8S_CONTEXT: "home-k8s"
     NAMESPACE: "dev"
     RPC_ACCOUNT_SERVICE: "k8s.account.hatlonely.com"
+    RPC_ARTICLE_SERVICE: "k8s.article.httlonely.com"
     ACCOUNT_EMAIL: "{{ .account.email }}"
     ACCOUNT_PHONE: "{{ .account.phone }}"
     ACCOUNT_NAME: "{{ .account.name }}"
@@ -25,13 +26,19 @@ task:
   add-user:
     step:
       - |
-        curl -XPOST "http://${RPC_ACCOUNT_SERVICE}/v1/account" -d "{
-          \"email\":\"${ACCOUNT_EMAIL}\",
-          \"phone\":\"${ACCOUNT_PHONE}\",
-          \"name\":\"${ACCOUNT_NAME}\",
-          \"password\":\"${ACCOUNT_PASSWORD}\",
-          \"birthday\":\"${ACCOUNT_BIRTHDAY}\",
-          \"gender\": ${ACCOUNT_GENDER},
-          \"avatar\":\"${ACCOUNT_AVATAR}\"
-        }"
+        curl -XPOST -s "http://${RPC_ACCOUNT_SERVICE}/v1/getAccountByPhoneOrEmail" -d "{
+            \"username\": \"${ACCOUNT_EMAIL}\"
+          }" | jq -e .id || {
+            curl -XPOST -s "http://${RPC_ACCOUNT_SERVICE}/v1/account" -d "{
+              \"email\":\"${ACCOUNT_EMAIL}\",
+              \"phone\":\"${ACCOUNT_PHONE}\",
+              \"name\":\"${ACCOUNT_NAME}\",
+              \"password\":\"${ACCOUNT_PASSWORD}\",
+              \"birthday\":\"${ACCOUNT_BIRTHDAY}\",
+              \"gender\": ${ACCOUNT_GENDER},
+              \"avatar\":\"${ACCOUNT_AVATAR}\"
+            }"
+        }
+
+
 
