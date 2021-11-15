@@ -12,8 +12,8 @@ env:
   dev:
     K8S_CONTEXT: "home-k8s"
     NAMESPACE: "dev"
-    RPC_ACCOUNT_SERVICE: "k8s.account.hatlonely.com"
-    RPC_ARTICLE_SERVICE: "k8s.article.httlonely.com"
+    RPC_ACCOUNT_SERVICE: "k8s.rpc.account.hatlonely.com"
+    RPC_ARTICLE_SERVICE: "k8s.rpc.article.hatlonely.com"
     ACCOUNT_EMAIL: "{{ .account.email }}"
     ACCOUNT_PHONE: "{{ .account.phone }}"
     ACCOUNT_NAME: "{{ .account.name }}"
@@ -39,6 +39,12 @@ task:
               \"avatar\":\"${ACCOUNT_AVATAR}\"
             }"
         }
+      - |
+        key=$(curl -XPOST -s "http://${RPC_ACCOUNT_SERVICE}/v1/getAccountByPhoneOrEmail" -d "{\"username\": \"${ACCOUNT_EMAIL}\"}" | jq -e -r .id)
+        curl -XPOST -H "Origin:localhost" -s "http://${RPC_ARTICLE_SERVICE}/v1/addOrUpdateAuthor" -d "{
+          \"key\": \"${key}\",
+          \"name\": \"${ACCOUNT_NAME}\"
+        }"
 
 
 
