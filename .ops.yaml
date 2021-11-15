@@ -45,3 +45,13 @@ task:
           \"key\": \"${key}\",
           \"name\": \"${ACCOUNT_NAME}\"
         }"
+  analyst:
+    step:
+      - |
+        author_id=$(curl -XPOST -H "Origin:localhost" -s "http://${RPC_ARTICLE_SERVICE}/v1/addOrUpdateAuthor" -d "{
+          \"key\": \"${key}\",
+          \"name\": \"${ACCOUNT_NAME}\"
+        }" | jq -e -r .id)
+        python3 ops/tool/md2json.py -a ${author_id} -d "linux,golang" > "${TMP}/result.json"
+      - while read line; do echo "$line" | jq -r .title; done <"tmp/env/dev/result.json"
+
