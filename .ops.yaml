@@ -45,6 +45,3 @@ task:
           \"key\": \"${key}\",
           \"name\": \"${ACCOUNT_NAME}\"
         }"
-
-
-
