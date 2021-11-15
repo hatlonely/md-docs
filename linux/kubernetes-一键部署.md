@@ -1,5 +1,7 @@
 # kubernetes sealos 一键部署
 
+[//]: <> (kubernetes, sealos)
+
 ## 部署
 
 1. 安装 sealos 工具
