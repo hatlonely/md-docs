@@ -1,5 +1,7 @@
 # centos8 vc66 安装
 
+[//]: <> (centos, vc66)
+
 ## 准备
 
 1. vc66
@@ -55,4 +57,4 @@
     PasswordAuthentication no
     ```
 
-3. 重启 etcd 是配置生效 `service sshd restart`
+3. 重启 sshd 是配置生效 `service sshd restart`
