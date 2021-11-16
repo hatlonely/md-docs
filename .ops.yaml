@@ -23,7 +23,7 @@ env:
     ACCOUNT_AVATAR: "{{ .account.avatar }}"
 
 task:
-  add-user:
+  put-user:
     step:
       - |
         curl -XPOST -s "http://${RPC_ACCOUNT_SERVICE}/v1/getAccountByPhoneOrEmail" -d "{
@@ -44,7 +44,7 @@ task:
         curl -XPOST -H "Origin:localhost" -s "http://${RPC_ARTICLE_SERVICE}/v1/addOrUpdateAuthor" -d "{
           \"key\": \"${key}\",
           \"name\": \"${ACCOUNT_NAME}\"
-        }"
+        }" && echo
   put-article:
     step:
       - |
