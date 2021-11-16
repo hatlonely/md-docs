@@ -45,7 +45,7 @@ task:
           \"key\": \"${key}\",
           \"name\": \"${ACCOUNT_NAME}\"
         }"
-  analyst:
+  put-article:
     step:
       - |
         author_id=$(curl -XPOST -H "Origin:localhost" -s "http://${RPC_ARTICLE_SERVICE}/v1/addOrUpdateAuthor" -d "{
