@@ -16,6 +16,13 @@ export PATH=/Users/hatlonely/Library/Android/sdk/tools/bin/:$PATH
 sdkmanager --install "cmdline-tools;latest"
 ```
 
+## 创建 flutter 项目
+
+```shell
+mkdir flutter-article && cd flutter-article
+flutter create flutter_article
+```
+
 ## 设置 Android Studio
 
 1. 安装 flutter 插件
