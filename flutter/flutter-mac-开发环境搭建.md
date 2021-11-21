@@ -29,6 +29,10 @@ flutter create flutter_article
 2. 打开一个 flutter 项目
 3. 设置 dart sdk: `/usr/local/Caskroom/flutter/2.5.3/flutter/bin/cache/dart-sdk`
 
+### 其他设置
+
+- 关闭右括号后面的注释 `Preferences > Editor > General > Appearance > Show closing labels in Dart source code`
+
 ## 链接
 
 - Android Studio: <https://developer.android.google.cn/studio/>
