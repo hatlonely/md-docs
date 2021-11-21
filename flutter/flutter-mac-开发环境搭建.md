@@ -1,5 +1,7 @@
 # flutter mac 开发环境搭建
 
+[//]: <> (flutter, 开发环境, mac)
+
 ## 安装 Android Studio
 
 <https://developer.android.google.cn/studio/>

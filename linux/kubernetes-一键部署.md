@@ -1,6 +1,6 @@
 # kubernetes sealos 一键部署
 
-[//]: <> (kubernetes, sealos)
+[//]: <> (kubernetes, sealos, k8s)
 
 ## 部署
 
