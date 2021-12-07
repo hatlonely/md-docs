@@ -154,22 +154,29 @@ ETCD_ROOT_PASSWORD=123456
 ETCD_USERNAME=hatlonely
 ETCD_PASSWORD=123456
 ETCD_ROLE=all-keys-rw
+ETCD_ENDPOINT=http://127.0.0.1:2379
+ETCD_ENDPOINT=http://etcd-cluster-client.hatlonely:2379
 
-etcdctl user add root:${ETCD_ROOT_PASSWORD}
-etcdctl role add ${ETCD_ROLE}
-etcdctl role grant ${ETCD_ROLE} -path '/*' -readwrite
-etcdctl user add ${ETCD_USERNAME}:${ETCD_PASSWORD}
-etcdctl user grant ${ETCD_USERNAME} -roles ${ETCD_ROLE}
-etcdctl auth enable
-etcdctl -u root:${ETCD_ROOT_PASSWORD} role remove guest
+until [ $(etcdctl --endpoints "${ETCD_ENDPOINT}" cluster-health | grep healthy | grep member | wc -l) == "3" ]; do
+    sleep 1
+    echo "waiting cluster health"
+done
+
+etcdctl --endpoints "${ETCD_ENDPOINT}" user add root:${ETCD_ROOT_PASSWORD}
+etcdctl --endpoints "${ETCD_ENDPOINT}" role add ${ETCD_ROLE}
+etcdctl --endpoints "${ETCD_ENDPOINT}" role grant ${ETCD_ROLE} -path '/*' -readwrite
+etcdctl --endpoints "${ETCD_ENDPOINT}" user add ${ETCD_USERNAME}:${ETCD_PASSWORD}
+etcdctl --endpoints "${ETCD_ENDPOINT}" user grant ${ETCD_USERNAME} -roles ${ETCD_ROLE}
+etcdctl --endpoints "${ETCD_ENDPOINT}" auth enable
+etcdctl --endpoints "${ETCD_ENDPOINT}" -u root:${ETCD_ROOT_PASSWORD} role remove guest
 
 export ETCDCTL_API=3
-etcdctl user add root:${ETCD_ROOT_PASSWORD}
-etcdctl role add ${ETCD_ROLE}
-etcdctl role grant-permission ${ETCD_ROLE} readwrite '/' --prefix
-etcdctl user add ${ETCD_USERNAME}:${ETCD_PASSWORD}
-etcdctl user grant-role ${ETCD_USERNAME} ${ETCD_ROLE}
-etcdctl auth enable
+etcdctl --endpoints "${ETCD_ENDPOINT}" user add root:${ETCD_ROOT_PASSWORD}
+etcdctl --endpoints "${ETCD_ENDPOINT}" role add ${ETCD_ROLE}
+etcdctl --endpoints "${ETCD_ENDPOINT}" role grant-permission ${ETCD_ROLE} readwrite '/' --prefix
+etcdctl --endpoints "${ETCD_ENDPOINT}" user add ${ETCD_USERNAME}:${ETCD_PASSWORD}
+etcdctl --endpoints "${ETCD_ENDPOINT}" user grant-role ${ETCD_USERNAME} ${ETCD_ROLE}
+etcdctl --endpoints "${ETCD_ENDPOINT}" auth enable
 ```
 
 ## 链接
