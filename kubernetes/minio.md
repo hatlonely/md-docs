@@ -2,7 +2,7 @@
 
 ## minio 命令行工具 mc
 
-- 创建凭证: `mc alias set home http://k8s.minio.hatlonely.com console console123 --api S3v2`
+- 创建凭证: `mc alias set home http://k8s.minio.hatlonely.com console console123 --api S3v4`
 - 创建 bucket: `mc mb home/article`
 - 上传: `mc cp * home/article`
 
