@@ -23,29 +23,6 @@
      #   --without-cni
     ```
 
-4. kube config 文件 `cat /etc/kubernetes/admin.conf`
-5. 修改 calico 网卡自动发现 `kubectl edit daemonset -n kube-system calico-node`
-
-    ```yaml
-    - name: IP_AUTODETECTION_METHOD
-      value: "interface=eth.*|wlp0s20f3|wlo1"
-    ```
-
-6. 安装 calico
-
-    ```shell
-    kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-    ```
-
-7. 修改 calico 镜像地址
-
-    ```
-    kubectl edit kubectl edit deployments calico-kube-controllers -n kube-system
-    kubectl edit daemonset -n kube-system calico-node
-
-    # 修改 docker.io 镜像地址到 docker.mirrors.ustc.edu.cn
-    ```
-
 ## 卸载
 
     ```shell
