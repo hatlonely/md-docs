@@ -17,9 +17,9 @@
 
 ## 解决
 
-1. 新建一台 ecs
+1. 新建一台 ecs，开放端口 80/443/6443/5080/5443/11443
 2. 分发 tunnel-server 到 ecs，分发 tunnel-client 到内部节点
-   
+
     ```shell
     scp -i ~/.ssh/dev.hatlonely.com.pem build/bin/tunnel-server root@123.57.26.76:/root
     
@@ -32,6 +32,7 @@
 
    ```shell
    nohup ./tunnel-server --server.serverPort 80 --server.tunnelPort 5080 --server.workerNum 16 --server.acceptNum 5 --server.connQueueLen 200 --useStdoutJsonLogger &
+   nohup ./tunnel-server --server.serverPort 443 --server.tunnelPort 5443 --server.workerNum 16 --server.acceptNum 5 --server.connQueueLen 200 --useStdoutJsonLogger &
    nohup ./tunnel-server --server.serverPort 6443 --server.tunnelPort 11443 --server.workerNum 16 --server.acceptNum 5 --server.connQueueLen 200 --useStdoutJsonLogger &
    ```
 
@@ -39,6 +40,7 @@
 
    ```shell
    nohup ./tunnel-agent --agent.tunnelAddr 123.57.26.76:5080 --agent.serverAddr 192.168.0.10:80 --useStdoutJsonLogger &
+   nohup ./tunnel-agent --agent.tunnelAddr 123.57.26.76:5443 --agent.serverAddr 192.168.0.10:443 --useStdoutJsonLogger &
    nohup ./tunnel-agent --agent.tunnelAddr 123.57.26.76:11443 --agent.serverAddr 192.168.0.10:6443 --useStdoutJsonLogger &
    ```
 

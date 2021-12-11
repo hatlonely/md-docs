@@ -57,7 +57,9 @@
 
 **问题原因**
 
-猜测这个版本的 ingress 需要设置 ingressClassName 才能暴露外部端点，但是 dashboard 同样没有 ingressClassName 但是可以暴露外部端点
+这个版本的 ingress 需要设置 ingressClassName 才能暴露外部端点，但是 dashboard 同样没有 ingressClassName 但是可以暴露外部端点
+
+也可以通过添加这个注解 kubernetes.io/ingress.class: nginx
 
 **问题解决**
 
