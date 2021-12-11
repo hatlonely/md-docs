@@ -32,6 +32,8 @@ mount_smbfs //hatlonely@192.168.0.101/data2 /Users/hatlonely/nas
 umount /Users/hatlonely/nas
 ```
 
+Mac 系统挂载后，可以直接通过 Finder 访问
+
 ### Centos 系统
 
 ```
