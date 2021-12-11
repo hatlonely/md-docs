@@ -19,8 +19,7 @@
         --interface wlo1 \
         --master 192.168.0.10  --master 192.168.0.11  --master 192.168.0.12  \
         --pkg-url kube1.22.3.tar.gz \
-        --version v1.22.3 \
-     #   --without-cni
+        --version v1.22.3
     ```
 
 ## 卸载
