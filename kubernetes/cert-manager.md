@@ -12,7 +12,7 @@ helm delete cert-manager --namespace cert-manager
 kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-manager.crds.yaml
 ```
 
-## 创建 ClusterIssuer
+## 创建 Acme ClusterIssuer
 
 ```yaml
 apiVersion: cert-manager.io/v1
@@ -28,6 +28,42 @@ spec:
     - http01:
        ingress:
          class: nginx
+```
+
+## ingress 使用 Acme 证书
+
+新增如下 annotation 即可
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-http01
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  labels:
+    app: kibana
+    heritage: Helm
+    release: kibana
+  name: kibana-kibana
+  namespace: dev
+spec:
+  rules:
+  - host: k8s.kibana.hatlonely.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: kibana-kibana
+            port:
+              number: 5601
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - k8s.kibana.hatlonely.com
+    secretName: kibana-tls
 ```
 
 ## 链接
