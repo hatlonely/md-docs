@@ -14,7 +14,7 @@
 - 连接服务器: `ssh sshd@192.168.0.101`
 - 修改 `/etc/exports` 文件，配置 nfs 目录
     ```
-    "/nfs/data" 192.168.0.0/24(rw,no_root_squash,async,no_wdelay,insecure_locks,insecure,no_subtree_check,anonuid=501,anongid=1000)
+    "/nfs/data" 192.168.0.0/24(rw,no_root_squash,sync,no_wdelay,insecure_locks,insecure,no_subtree_check,anonuid=1001,anongid=1001)
     "/nfs/data2" 192.168.0.0/24(rw,no_root_squash,sync,no_wdelay,insecure_locks,insecure,no_subtree_check,anonuid=1001,anongid=1001)
     ```
 - 重新加载 `exportfs -rv` 使配置生效

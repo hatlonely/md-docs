@@ -21,6 +21,10 @@ env:
     ACCOUNT_BIRTHDAY: "{{ .account.birthday }}"
     ACCOUNT_GENDER: "{{ .account.gender }}"
     ACCOUNT_AVATAR: "{{ .account.avatar }}"
+    MINIO_NAME: "home"
+    MINIO_ENDPOINT: "https://k8s.minio.hatlonely.com"
+    MINIO_USERNAME: "{{.minio.username}}"
+    MINIO_PASSWORD: "{{.minio.password}}"
 
 task:
   put-user:
@@ -63,4 +67,7 @@ task:
         for file in `ls ops/image/thumbnail`; do
             echo magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
             magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
+            break
         done
+      - mc alias set "${MINIO_NAME}" "${MINIO_ENDPOINT}" "${MINIO_USERNAME}" "${MINIO_PASSWORD}" --api S3v4
+      - mc mb ${MINIO_NAME}/article
