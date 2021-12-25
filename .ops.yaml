@@ -56,3 +56,12 @@ task:
         }" | jq -e -r .id)
         python3 ops/tool/md2json.py -a ${author_id} -d "linux,golang,flutter,kubernetes" > "${TMP}/result.json"
       - cat "${TMP}/result.json" | while read -r line; do curl -XPOST -H "Origin:localhost" --data-binary "$line" http://${RPC_ARTICLE_SERVICE}/v1/article; echo; done
+  put-image:
+    step:
+      - mkdir -p ${TMP}/image/thumbnail/
+      - |
+        for file in `ls ops/image/thumbnail`; do
+            echo magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
+            magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
+            break;
+        done
