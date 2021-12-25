@@ -64,7 +64,11 @@ task:
     step:
       - mkdir -p ${TMP}/image/thumbnail/
       - mc alias set "${MINIO_NAME}" "${MINIO_ENDPOINT}" "${MINIO_USERNAME}" "${MINIO_PASSWORD}" --api S3v4
-      - mc ls ${MINIO_NAME}/article || mc mb ${MINIO_NAME}/article
+      - |
+        mc ls ${MINIO_NAME}/article || {
+          mc mb ${MINIO_NAME}/article
+          mc policy set public ${MINIO_NAME}/article
+        }
       - mc cp ops/image/avatar/hatlonely.png ${MINIO_NAME}/article/avatar
       - |
         for file in `ls ops/image/thumbnail`; do
