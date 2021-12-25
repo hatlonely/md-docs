@@ -63,5 +63,4 @@ task:
         for file in `ls ops/image/thumbnail`; do
             echo magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
             magick ops/image/thumbnail/${file} -resize 12.5% ${TMP}/image/thumbnail/${file%%.*}.png
-            break;
         done
