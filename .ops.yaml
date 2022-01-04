@@ -21,6 +21,10 @@ env:
     ACCOUNT_BIRTHDAY: "{{ .account.birthday }}"
     ACCOUNT_GENDER: "{{ .account.gender }}"
     ACCOUNT_AVATAR: "{{ .account.avatar }}"
+    MINIO_NAME: "home"
+    MINIO_ENDPOINT: "https://k8s.minio.hatlonely.com"
+    MINIO_USERNAME: "{{.minio.username}}"
+    MINIO_PASSWORD: "{{.minio.password}}"
 
 task:
   put-user:
@@ -56,3 +60,20 @@ task:
         }" | jq -e -r .id)
         python3 ops/tool/md2json.py -a ${author_id} -d "linux,golang,flutter,kubernetes" > "${TMP}/result.json"
       - cat "${TMP}/result.json" | while read -r line; do curl -XPOST -H "Origin:localhost" --data-binary "$line" http://${RPC_ARTICLE_SERVICE}/v1/article; echo; done
+  put-image:
+    step:
+      - mkdir -p ${TMP}/image/thumbnail/
+      - mc alias set "${MINIO_NAME}" "${MINIO_ENDPOINT}" "${MINIO_USERNAME}" "${MINIO_PASSWORD}" --api S3v4
+      - |
+        mc ls ${MINIO_NAME}/article || {
+          mc mb ${MINIO_NAME}/article
+          mc policy set public ${MINIO_NAME}/article
+        }
+      - mc cp ops/image/avatar/hatlonely.png ${MINIO_NAME}/article/avatar
+      - |
+        for file in `ls ops/image/thumbnail`; do
+            dst_filename=${file%%.*}.png
+            echo magick ops/image/thumbnail/${file} -resize 512x512 ${TMP}/image/thumbnail/${dst_filename}
+            docker run --rm -v $(pwd)/ops/image/thumbnail:/src -v $(pwd)/${TMP}/image/thumbnail:/dst dpokidov/imagemagick /src/${file} -resize 512x512 /dst/${dst_filename}
+            mc cp ${TMP}/image/thumbnail/${dst_filename} ${MINIO_NAME}/article/thumbnail/${dst_filename}
+        done
