@@ -30,3 +30,7 @@ ps -e -o pid,ppid,cmd,%mem,etimes,%cpu --sort=-%cpu | head -20 | grep "myapp" | 
     }
 }' | xargs kill
 ```
+
+## 链接
+
+- manual ps: <https://man7.org/linux/man-pages/man1/ps.1.html>

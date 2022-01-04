@@ -44,3 +44,7 @@ ps --no-headers -e -Ao "rss,etime,command" --sort=-rss | head -10 | awk '{
 577.0MB         06:24:31     webet ver:20210929220102-c9fcf70066 key:edit/49607735853 lang:zh-CN
 562.2MB         05:42:19     webet ver:20210929220102-c9fcf70066 key:edit/19939283109 lang:zh-CN
 ```
+
+## 链接
+
+- manual ps: <https://man7.org/linux/man-pages/man1/ps.1.html>
