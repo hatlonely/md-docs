@@ -1,6 +1,6 @@
 # coredns cname 到 service
 
-[//]: <> (coredns, cname, k8s, 网络)
+[//]: <> (coredns, dns, cname, k8s, 网络)
 
 在 k8s 内部将一个域名解析到一个 service，可以直接通过 coredns 实现
 

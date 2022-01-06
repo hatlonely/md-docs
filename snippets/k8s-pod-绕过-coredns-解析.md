@@ -1,5 +1,7 @@
 # k8s pod 绕过 coredns 解析
 
+[//]: <> (coredns, dns, k8s, 网络)
+
 设置 `deployment.spec.template.spec.dnsPolicy` 为 `Default` 即可
 
 - `Default`: Pod 从运行所在的节点继承名称解析配置
