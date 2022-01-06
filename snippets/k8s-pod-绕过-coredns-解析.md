@@ -11,4 +11,4 @@
 
 ## 链接
 
-- kubernetes deployment: <https://kubernetes.io/zh/docs/concepts/services-networking/dns-pod-service/>
+- kubernetes dns pod service: <https://kubernetes.io/zh/docs/concepts/services-networking/dns-pod-service/>
