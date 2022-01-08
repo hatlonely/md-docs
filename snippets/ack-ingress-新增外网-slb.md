@@ -1,6 +1,6 @@
 # ack ingress 新增外网 slb
 
-[//]: <> (ack, ingress, k8s, slb)
+[//]: <> (ack, ingress, k8s, slb, 阿里云)
 
 ```yaml
 apiVersion: v1
