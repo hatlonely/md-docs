@@ -1,5 +1,8 @@
 # flutter 自定义字体
 
+[//]: <> (flutter, web, font)
+
+
 flutter web 不支持直接使用系统字体，默认的字体来自于于 google，下载很慢，而中文字体又比较大，耗时很长，可以考虑将字体放到本地服务中
 
 首先需要下载字体到项目的根目录 assets/fonts 目录下
