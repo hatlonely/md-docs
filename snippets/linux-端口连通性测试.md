@@ -1,6 +1,6 @@
 # linux 端口连通性测试
 
-[//]: <> (linux, telnet, 网络)
+[//]: <> (linux, telnet, 网络, 连通性测试)
 
 使用 telnet 命令可以查看网络连通性，直接 `telnet <ip/host> <port>` 即可
 
