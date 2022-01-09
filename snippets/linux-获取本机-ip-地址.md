@@ -1,5 +1,7 @@
 # linux 获取本机 ip 地址
 
+[//]: <> (linux, ip, dig, curl)
+
 ## 获取公网 ip
 
 ```shell
@@ -16,3 +18,7 @@ curl ipecho.net/plain
 ```shell
 ifconfig -a | grep -C 4 en0 | grep inet | grep netmask | grep broadcast | grep -Eo "inet \d+.\d+.\d+.\d+" | grep -Eo "\d+.\d+.\d+.\d+"
 ```
+
+## 链接
+
+- 如何获取 ip 地址: <https://opensource.com/article/18/5/how-find-ip-address-linux>
