@@ -71,4 +71,4 @@ fonts:
 
 - flutter 自定义字体: <https://docs.flutter.dev/cookbook/design/fonts>
 - 字体下载代码样例: <https://github.com/hatlonely/flutter-article/blob/master/.ops.yaml>
-- pubspec.yaml 样例: <>
+- pubspec.yaml 样例: <https://github.com/hatlonely/flutter-article/blob/master/flutter_article/pubspec.yaml>
