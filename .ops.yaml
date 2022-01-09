@@ -69,7 +69,7 @@ task:
           mc mb ${MINIO_NAME}/article
           mc policy set public ${MINIO_NAME}/article
         }
-      - mc cp ops/image/avatar/hatlonely.png ${MINIO_NAME}/article/avatar
+      - mc cp ops/image/avatar/hatlonely.png ${MINIO_NAME}/article/avatar/hatlonely.png
       - |
         for file in `ls ops/image/thumbnail`; do
             dst_filename=${file%%.*}.png
