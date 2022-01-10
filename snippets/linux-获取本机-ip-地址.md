@@ -11,6 +11,8 @@ curl ipinfo.io/ip
 curl api.ipify.org
 curl ident.me
 curl ipecho.net/plain
+wget -qO - ifconfig.me
+wget -qO - icanhazip.com
 ```
 
 ## 获取内网 ip
