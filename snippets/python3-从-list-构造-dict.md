@@ -1,5 +1,7 @@
 # python3 从 list 构造 dict
 
+[//]: <> (python3, dict, list)
+
 ```
 d = dict([("key1", "val1"), ("key2", "val2")])
 ```
