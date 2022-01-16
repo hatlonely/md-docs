@@ -1,5 +1,7 @@
 # python3 pymysql 连接 mysql 数据库
 
+[//]: <> (python3, mysql, pymysql, 数据库)
+
 安装
 
 ```
