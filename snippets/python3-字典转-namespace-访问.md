@@ -1,5 +1,7 @@
 # python3 字典转 namespace 访问
 
+[//]: <> (python3, dict, SimpleNamespace)
+
 使用 `SimpleNamespace` 库可以实现这个需求
 
 ```python
