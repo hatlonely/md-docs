@@ -1,5 +1,7 @@
 # python3 mongo update 内嵌字典
 
+[//]: <> (python3, mongo, pymongo, 数据库)
+
 `pymongo` 的 `update_one` 接口只能支持最外层 key 的 update，不能递归嵌套 update
 
 如下面的例子，整个 key3 都会直接被覆盖成新的值
