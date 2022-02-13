@@ -19,11 +19,8 @@ n = SimpleNamespace(**d)
 import json
 from types import SimpleNamespace
 
-def dict_to_sns(d):
-    return SimpleNamespace(**d)
-
 d = {'key1': 'value1', 'key2': 'value2', 'key3': {'key4': 'value5', 'key5': 5, 'key6': ['value61', 'value62'], 'key7': [{'key8': 'value8'}]}}
-n = json.loads(json.dumps(d), object_hook=dict_to_sns)
+m = json.loads(json.dumps(d), object_hook=lambda x: SimpleNamespace(**x))
 
 # namespace(key1='value1', key2='value2', key3=namespace(key4='value5', key5=5, key6=['value61', 'value62'], key7=[namespace(key8='value8')]))
 ```
