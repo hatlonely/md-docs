@@ -1,4 +1,4 @@
-# python3 html 模板渲染
+# python3 jinja2 html 模板渲染
 
 [//]: <> (python3, jinja2, html, template)
 
