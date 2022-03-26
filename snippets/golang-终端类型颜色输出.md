@@ -15,3 +15,4 @@ func Info(format string, args ...interface{}) {
 ## 链接
 
 - How to check if your program is running in a terminal: <https://www.socketloop.com/tutorials/golang-how-to-check-if-your-program-is-running-in-a-terminal>
+- go-kit 源码: <https://github.com/hatlonely/go-kit/blob/master/strx/color.go>
