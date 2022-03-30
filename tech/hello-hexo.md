@@ -45,13 +45,11 @@ language: zh-CN
 4. 开启字数统计，在 `scaffolds/post.md` 模板中添加
 
 ```yaml
----
 title: {{ title }}
 date: {{ date }}
 tags:
-wordcount: 
-min2read: 
----
+wordcount:
+min2read:
 ```
 
 5. 主题更新 `npm update --save hexo-theme-fluid`
@@ -76,7 +74,7 @@ hexo 还提供了一键部署功能，可以将生成的静态页面部署到 gi
 ```yaml
 deploy:
   type: git
-  repo: <repository url> 
+  repo: <repository url>
 ```
 
 ## 链接
