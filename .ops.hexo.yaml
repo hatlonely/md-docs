@@ -1,0 +1,38 @@
+name: md-docs
+
+env:
+  default:
+
+task:
+  init:
+    step:
+      - |
+        cd ${TMP} && hexo init blog && cd blog && \
+        npm install && \
+        npm install --save hexo-theme-fluid
+      - |
+        sed -i "" -E "s/theme:.*/theme: fluid/g" "${TMP}/blog/_config.yml"
+        sed -i "" -E "s/language:.*/language: zh-CN/g" "${TMP}/blog/_config.yml"
+      - |
+        cat <<EOF > ${TMP}/blog/scaffolds/post.md
+        ---
+        title: {{ `{{ title }}` }}
+        date: {{ `{{ date }}` }}
+        tags:
+        wordcount:
+        min2read:
+        ---
+        EOF
+      - |
+        cat <<EOF >${TMP}/blog/_config.fluid.yml
+        navbar:
+          blog_title: hatlonely's blog
+        index:
+          slogan:
+            enable: true
+            text: 但行好事，莫问前程
+        EOF
+  build:
+    step:
+      - rm -rf ${TMP}/blog/source/_posts/* && cp -r tech/* ${TMP}/blog/source/_posts
+      - cd ${TMP}/blog && hexo generate
